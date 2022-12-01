@@ -1,5 +1,6 @@
 ﻿using System;
 using System.IO;
+using System.Linq;
 
 namespace day1
 {
@@ -18,9 +19,9 @@ namespace day1
             }
 
             int[] _finalPosition = GetNewPositionFromInstructions(_instructions);
-            int _distance = GetDistanceFromOrigin(_finalPosition);
+            int _distanceOne = GetDistanceFromOrigin(_finalPosition);
 
-            Console.WriteLine($"Part one: {_distance}");
+            Console.WriteLine($"Part one: {_distanceOne}");
         }
 
         private static int[] GetNewPositionFromInstructions(string[] instructions)
@@ -28,6 +29,8 @@ namespace day1
             int _x = 0;
             int _y = 0;
             string _currentDirection = s_directions[0];
+
+            List<int[]> _visitedPositions = new List<int[]>();
 
             foreach (string _step in instructions)
             {
@@ -58,6 +61,9 @@ namespace day1
                         Console.WriteLine($"No case for {_currentDirection}!");
                         break;
                 }
+
+                _visitedPositions.Add(new int[] { _x, _y });
+                FindIntersect(_visitedPositions);
             }
 
             return new int[] { _x, _y };
@@ -70,7 +76,7 @@ namespace day1
 
             if (_newIndex == s_directions.Length) { _newIndex = 0; }
             if (_newIndex == -1) { _newIndex = s_directions.Length - 1; }
-            Console.WriteLine(s_directions[_newIndex]);
+
             return s_directions[_newIndex];
         }
 
@@ -80,6 +86,13 @@ namespace day1
             int _dY = (int)MathF.Abs(position[1]);
 
             return _dX + _dY;
+        }
+
+        private static void FindIntersect(List<int[]> visitedPositions)
+        {
+            if (visitedPositions.Count == 0) { return; }
+
+
         }
     }
 }
