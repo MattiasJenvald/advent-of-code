@@ -69,18 +69,18 @@
 
     private static void Main()
     {
-        string[] _input = File.ReadAllLines("input.txt");
+        string[] input = File.ReadAllLines("input.txt");
 
-        List<Pair> _pairs = new List<Pair>();
+        List<Pair> pairs = new List<Pair>();
 
-        foreach (string assignment in _input)
+        foreach (string assignment in input)
         {
             Pair pair = new Pair(assignment);
-            _pairs.Add(pair);
+            pairs.Add(pair);
         }
 
-        solvePartOne(_pairs);
-        solvePartTwo(_pairs);
+        solvePartOne(pairs);
+        solvePartTwo(pairs);
     }
 
     private static void solvePartOne(List<Pair> pairs)
