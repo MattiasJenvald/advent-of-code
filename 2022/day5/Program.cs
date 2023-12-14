@@ -154,17 +154,21 @@
 
     private static void Main()
     {
+        var watch = System.Diagnostics.Stopwatch.StartNew();
+
         string[] input = File.ReadAllLines("input.txt");
         List<String[]> instructions = getInstructions(input);
 
-        LoadingBay loadingBay = new LoadingBay(input);
+        LoadingBay loadingBay1 = new LoadingBay(input);
+        LoadingBay loadingBay2 = new LoadingBay(input);
 
-        // loadingBay.CrateMover9000(instructions);
-        // Console.WriteLine($"Part one: {loadingBay.GetCurrentTopLayer()}");
+        loadingBay1.CrateMover9000(instructions);
+        Console.WriteLine($"Part one: {loadingBay1.GetCurrentTopLayer()}");
 
-        loadingBay.CrateMover9001(instructions);
-        Console.WriteLine($"Part two: {loadingBay.GetCurrentTopLayer()}");
+        loadingBay2.CrateMover9001(instructions);
+        Console.WriteLine($"Part two: {loadingBay2.GetCurrentTopLayer()}");
 
+        Console.WriteLine($"Time to complete = {watch.ElapsedMilliseconds} ms.");
     }
 
     private static List<String[]> getInstructions(string[] input)
