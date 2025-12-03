@@ -42,6 +42,32 @@ static class Day01
 
     private static int SolvePart2(string[] input)
     {
-        return 0;
+        int result = 0;
+        int dial = 50;
+
+        foreach (string s in input)
+        {
+            if (string.IsNullOrEmpty(s)) { continue; }
+
+            char direction = s[0];
+            if (direction is not 'L' and not 'R') { continue; }
+
+            if (int.TryParse(s.AsSpan(1), out int clicks))
+            {
+                int multiplier = direction == 'L' ? -1 : 1;
+
+                for (int i = 0; i < clicks; i++)
+                {
+                    dial += multiplier;
+
+                    if (dial < 0) { dial += 100; }
+                    else if (dial > 99) { dial -= 100; }
+
+                    if (dial == 0) { result++; }
+                }
+            }
+        }
+
+        return result;
     }
 }
